@@ -1,17 +1,26 @@
-# Read text from a file, and count the occurence of words in that text
-# Example:
-# count_words("The cake is done. It is a big cake!") 
-# --> {"cake":2, "big":1, "is":2, "the":1, "a":1, "it":1}
+file="story.txt"
 
-def read_file_content(filename):
-    with open('story.txt') as f:
-    contents = f.read()
+def read_file_content(myfile):
+    
+    with open(myfile, 'r') as file:
+        data = file.read().replace('\n','')
+    return data
 
-print(contents)
+def count_words(myfile):
+    big_string = read_file_content(myfile)
+   
+    s = big_string.lower().split()
+    dict = {}
 
+    for word in s:
+        
+        if word in dict:
+           
+            dict[word] = dict[word] + 1
+        else:
+            
+            dict[word] = 1
+    
+    return dict
 
-def count_words():
-    text = read_file_content("./story.txt")
-    # [assignment] Add your code here
-
-    return {"as": 10, "would": 20}
+print(count_words(file))
